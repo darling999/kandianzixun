@@ -1,0 +1,906 @@
+<div id="home">
+	<!-- 布局 -->
+	<div class="outerDiv">
+		<div class="row">
+			<div class="col-sm-3">
+				<!-- 3个div -->
+				<div class="totalDiv bg-white">
+					<div class="iconDiv bg-green">
+						<i class="iconfont icon-yun"></i>
+					</div>
+					<div class="numDiv">
+						<span>99.9%</span>
+						<small>SERVER UPTIME</small>
+					</div>
+				</div>
+				<div class="totalDiv bg-white">
+					<div class="iconDiv bg-purple">
+						<i class="iconfont icon-user"></i>
+					</div>
+					<div class="numDiv">
+						<span>117k</span>
+						<small>USERS TOTAL</small>
+					</div>
+				</div>
+				<div class="totalDiv bg-white">
+					<div class="iconDiv bg-skyblue">
+						<i class="iconfont icon-18"></i>
+					</div>
+					<div class="numDiv">
+						<span>2,470</span>
+						<small>NEW DAILY PHOTOS </small>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="visDiv">
+					<div id="visContainer"></div>
+					<div class="numDiv">
+						<span>14.85%</span>
+						<small>More Visitors</small>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="uptimeDiv">
+					<div id="uptimeContainer"></div>
+					<div class="numDiv">
+						<span>95.8%</span>
+						<small>CURRENT SERVER UPTIME </small>
+					</div>
+				</div>
+				<div class="salesDiv">
+					<div id="salesContainer"></div>
+					<div class="numDiv">
+						<span>320,45</span>
+						<small>AVG OF SALES </small>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 ">
+				<div class="conDiv bg-white">
+					<div id="conContainer" class="bg-danger"></div>
+					<div id="conContainer1">
+						<table id="table-sparkline">
+							<tbody id="tbody-sparkline">
+								<tr>
+									<td>Pageviews</td>
+									<td data-sparkline="71, 78, 39, 66,80, 78, 39, 66 "></td>
+								</tr>
+								<tr>
+								    <td>visitors</td>
+									<td data-sparkline="80, 78, 39, 66,71, 78, 39, 66 "></td>
+								</tr>
+								<tr>
+								    <td>Converted Sales</td>
+									<td data-sparkline="91, 78, 42, 66,39, 66,71, 78 "></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 ">
+				<div class="RightDiv">
+					<div class="speedDiv bg-white">
+						<div id="speedContainer"></div>
+						<div class="numDiv numDiv-speed">
+							<span>15.05mb/s</span>
+							<small>DOWNLOAD SPEED </small>
+						</div>
+						<div id="speed1Container"></div>
+					</div>
+					<div class="cpuDiv bg-white">
+						<div id="cpuContainer"></div>
+						<div class="numDiv numDiv-cpu">
+							<span>67.35%</span>
+							<small>CPU USAGE</small>
+							<small>Sentiments two occasional affronting</small>
+							<small>solicitude travelling and one constrasted</small>
+							<small>Fortune day out married parties</small>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<script>
+	$(function(){
+		drawVis();
+		drawUptime();
+		drawSales();
+		drawCon();
+		drawCon1();
+		drawSpeed();
+		drawSpeed1();
+		drawCpu();
+		
+		function drawSales(){
+			var chart = Highcharts.chart('salesContainer', {
+				colors:['#66bb0d','#2e681c','#5e9b4d','#6ca959','#86c375','#a0db8b'],
+				credits:{
+					enabled:false,
+				},
+				chart: {
+					margin : [0, 0 , 0, 100]
+				},
+				title: {
+					floating:true,
+					text: ''
+				},
+				tooltip: {
+					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						dataLabels: {
+							enabled: false,
+						},
+					}
+				},
+				series: [{
+					type: 'pie',
+					innerSize: '60%',
+					name: 'Sales',
+					data: [
+						['Firefox',45.0],
+						['IE',26.8],
+						['Chrome',12.8],
+						['Safari',8.5],
+						['Opera',6.2],
+						['其他',0.7]
+					]
+				}]
+			});
+		}
+		function drawUptime(){
+			var chart = Highcharts.chart('uptimeContainer', {
+				chart:{
+					margin:[0,0,0,0],
+				},
+				credits:{
+					enabled:false,
+				},
+				colors:['#862eb7'],
+				title: {
+					text: ''
+				},
+				xAxis: {
+					visible:false,
+				},
+				yAxis: {
+					visible:false,
+				},
+				series: [{
+					type: 'column',
+					colorByPoint: true,
+					data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4,148.5, 216.4, 194.1, 95.6, 54.4,65.5,89.3,120.9,130.9,70.2,109,2],
+					showInLegend: false
+				}]
+			});
+		}
+		function drawVis(){
+			// 绘制
+			var chart = Highcharts.chart('visContainer', {
+				chart:{
+					margin:[0,0,0,0],
+				},
+				credits:{
+					enabled:false,
+				},
+				colors:['#66bb0d','#cccccc'],
+				title: {
+					text: ''
+				},
+				xAxis: {
+					visible:false,
+				},
+				yAxis: {
+					visible:false,
+					title: {
+						text: ''
+					}
+				},
+				legend: {
+					floating:true,
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'top'
+				},
+				plotOptions: {
+					series: {
+						label: {
+							connectorAllowed: false
+						},
+						pointStart: 2010
+					}
+				},
+				series: [{
+					name: 'Page',
+					data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175,124916, 124064, 129742, 129851, 132490, 130282, 113812, 140434,123118,134129,112123,123634,118976,121221,141231,130098,131987]
+				}, {
+					name: 'Visitors',
+					data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434,43934, 52503, 57177, 69658, 97031, 89931, 97133, 84175,98756,107689,100098,112986,79870,99876,80984,93753,76421]
+				}]
+			});
+		}
+		
+		function drawCon(){
+			var chart = Highcharts.chart('conContainer', {
+				colors:['#fed118','#7b2fc0','#015ecc','#65ba0f'],
+				chart: {
+					plotBackgroundColor: null,
+					plotBorderWidth: null,
+					plotShadow: false,
+					type: 'pie'
+				},
+				credits:{
+						enabled:false,
+					},
+				title: {
+					text: ''
+				},
+				tooltip: {
+					pointFormat: '{series.name} <b>{point.percentage.1f}%</b>'
+				},
+				plotOptions: {
+					pie: {
+						allowPointSelect: true,
+						cursor: 'pointer',
+						dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b>{point.percentage:.1f} %',
+							style: {
+								color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							}
+						}
+					}
+				},
+				series: [{
+					name: 'Brands',
+					colorByPoint: true,
+					data: [{
+						name: '',
+						y: 45.22,
+						sliced: true,
+						selected: true
+					}, {
+						name: '',
+						y: 14.81
+					}, {
+						name: '',
+						y: 21.31
+					}, {
+						name: '',
+						y: 30.91
+					}]
+				}]
+			});
+		}
+		function drawCon1() {
+			Highcharts.SparkLine = function (a, b, c) {
+				var hasRenderToArg = typeof a === 'string' || a.nodeName,
+					options = arguments[hasRenderToArg ? 1 : 0],
+					defaultOptions = {
+						chart: {
+							renderTo: (options.chart && options.chart.renderTo) || this,
+							backgroundColor: null,
+							borderWidth: 0,
+							type: 'area',
+							margin: [2, 0, 2, 0],
+							width: 140,
+							height: 20,
+							style: {
+								overflow: 'visible'
+							},
+						},
+						title: {
+							text: ''
+						},
+						credits: {
+							enabled: false
+						},
+						xAxis: {
+							title: {
+								text: null
+							},
+							startOnTick: false,
+							endOnTick: false,
+							tickPositions: []
+						},
+						yAxis: {
+							endOnTick: false,
+							startOnTick: false,
+							labels: {
+								enabled: false
+							},
+							title: {
+								text: null
+							},
+							tickPositions: [0]
+						},
+						legend: {
+							enabled: false
+						},
+						tooltip: {
+							backgroundColor: null,
+							borderWidth: 0,
+							shadow: false,
+							useHTML: true,
+							hideDelay: 0,
+							shared: true,
+							padding: 0,
+							positioner: function (w, h, point) {
+								return { x: point.plotX - w / 2, y: point.plotY - h };
+							}
+						},
+						plotOptions: {
+							series: {
+								animation: false,
+								lineWidth: 1,
+								shadow: false,
+								states: {
+									hover: {
+										lineWidth: 1
+									}
+								},
+								marker: {
+									radius: 1,
+									states: {
+										hover: {
+											radius: 2
+										}
+									}
+								},
+								fillOpacity: 0.25
+							},
+							column: {
+								negativeColor: '#910000',
+								borderColor: 'silver'
+							}
+						}
+					};
+				options = Highcharts.merge(defaultOptions, options);
+				return hasRenderToArg ?
+					new Highcharts.Chart(a, options, c) :
+				new Highcharts.Chart(options, b);
+			};
+			var start = +new Date(),
+				$tds = $('td[data-sparkline]'),
+				fullLen = $tds.length,
+				n = 0;
+			  function doChunk() {
+				var time = +new Date(),
+					i,
+					len = $tds.length,
+					$td,
+					stringdata,
+					arr,
+					data,
+					chart;
+				for (i = 0; i < len; i += 1) {
+					$td = $($tds[i]);
+					stringdata = $td.data('sparkline');
+					arr = stringdata.split('; ');
+					data = $.map(arr[0].split(', '), parseFloat);
+					chart = {};
+					if (arr[1]) {
+						chart.type = arr[1];
+					}
+					$td.highcharts('SparkLine', {
+						series: [{
+							data: data,
+							pointStart: 1
+						}],
+						tooltip: {
+							headerFormat: '<span>' + $td.parent().find('th').html() + ', Q{point.x}:</span><br/>',
+							pointFormat: '<b>{point.y}.000</b> USD'
+						},
+						chart: chart
+					});
+					n += 1;
+					// If the process takes too much time, run a timeout to allow interaction with the browser
+					if (new Date() - time > 500) {
+						$tds.splice(0, i + 1);
+						setTimeout(doChunk, 0);
+						break;
+					}
+				}
+			}
+			doChunk();
+       }
+       function drawSpeed(){
+			var chart = Highcharts.chart('speedContainer',{
+				chart: {
+					type: 'gauge',
+					plotBackgroundColor: null,
+					plotBackgroundImage: null,
+					plotBorderWidth: 0,
+					plotShadow: false,
+					margin:[10,0,0,50]
+					
+				},
+				credits:{
+					enabled:false
+				},
+				title: {
+					text: ''
+				},
+				pane: {
+					startAngle: -150,
+					endAngle: 150,
+					background: [{
+						backgroundColor: {
+						},
+						borderWidth: 0,
+						outerRadius: '106%'
+					}, {
+						backgroundColor: {
+						},
+						borderWidth: 5,
+						outerRadius: '100%'
+					}, {
+						// default background
+					}, {
+						backgroundColor: '#fff',
+						borderWidth: 0,
+						outerRadius: '104%',
+						innerRadius: '103%'
+					}]
+				},
+				// the value axis
+				yAxis: {
+					min: 0,
+					max: 200,
+					minorTickInterval: 'auto',
+					minorTickLength: 1,
+					tickPixelInterval: 40,
+					tickWidth: 1,
+					tickLength: 0,
+					labels: {
+						step: 5,
+						rotation: 'auto'
+					},
+					title: {
+						text: ''
+					},
+					plotBands: [{
+						from: 0,
+						to: 49.3,
+						color: 'purple' // green
+					},{
+						from: 50,
+						to: 99.3,
+						color: 'purple' // green
+					}, {
+						from:49.3,
+						to: 50,
+						from:99.3,
+						to: 100,
+						color: '#ffffff' //white
+					},{
+						from:100,
+						to: 149.3,
+						color: 'purple' // red
+					},{
+						from:150,
+						to: 200,
+						color: 'purple' // red
+					}]
+				},
+				series: [{
+					name: 'Speed',
+					data: [60],
+				}]
+			});
+		}
+		function drawSpeed1(){
+			var chart = Highcharts.chart('speed1Container',{
+				
+				// padding:[0,0,0,0],
+				chart: {
+					type: 'area',
+					margin:[0,0,0,0]
+				},
+				credits:{
+					enabled:false,
+				},
+				colors:['#c9ade5','#655672'],
+				legend:{
+					enabled:false,
+				},
+				title: {
+					text: ''
+				},
+				subtitle: {
+					text: ''
+				},
+				xAxis: {
+					visible:false,
+					allowDecimals: false
+				},
+				yAxis: {
+					min:0,
+					max:250,
+					visible:false,
+					title: {
+						text: ''
+					},
+					labels: {
+						formatter: function () {
+							return this.value / 1000 + 'k';
+						}
+					}
+				},
+				tooltip: {
+					pointFormat: ''
+				},
+				plotOptions: {
+					area: {
+						pointStart: 0,
+						marker: {
+							enabled: false,
+							symbol: 'circle',
+							radius: 2,
+							states: {
+								hover: {
+									enabled: true
+								}
+							}
+						}
+					}
+				},
+				series: [{
+					// name: '美国',
+					data: [150,149,148,151,152,153,152,155,159,158,158,154,156,158,153,150,160,159,163,162,159,]
+				}, {
+					// name: '苏联/俄罗斯',
+					data: [70,78,76,77,74,70,73,71,72,77,80,71,69,60,60,70,72,71,70,60,63,]
+				}]
+			});
+		}
+		
+		drawCpu();
+		function drawCpu(){
+			var chart = Highcharts.chart('cpuContainer',{
+				chart: {
+					
+					type: 'gauge',
+					plotBackgroundColor: null,
+					plotBackgroundImage: null,
+					plotBorderWidth: 0,
+					plotShadow: false,
+					margin:[0,0,0,50]
+				},
+				credits:{
+					enabled:false
+				},
+				title: {
+					text: ''
+				},
+				pane: {
+					startAngle: -150,
+					endAngle: 150,
+					background: [{
+						backgroundColor: {
+						},
+						borderWidth: 0,
+						outerRadius: '108%'
+					}, {
+						backgroundColor: {
+						},
+						borderWidth: 5,
+						outerRadius: '100%'
+					}, {
+						// default background
+					}, {
+						backgroundColor: '#fff',
+						borderWidth: 0,
+						outerRadius: '105%',
+						innerRadius: '103%'
+					}]
+				},
+				// the value axis
+				yAxis: {
+					min: 0,
+					max: 100,
+					minorTickInterval: 'auto',
+					minorTickLength: 1,
+					tickPixelInterval: 40,
+					tickWidth: 1,
+					tickLength: 0,
+					labels: {
+						step: 5,
+						rotation: 'auto'
+					},
+					title: {
+						text: ''
+					},
+					plotBands: [{
+						from: 0,
+						to: 24.8,
+						color: '#55BF3B' // green
+					},{
+						from: 25.3,
+						to: 49.8,
+						color: '#55BF3B' // green
+					}, {
+						from:24.8,
+						to: 25.3,
+						from:49.8,
+						to: 50.3,
+						color: '#ffffff' //white
+					},{
+						from:50.3,
+						to: 74.8,
+						color: '#55BF3B' // red
+					},{
+						from:75.3,
+						to: 99,
+						color: '#DF5353' // red
+					}]
+				},
+				series: [{
+					name: 'Speed',
+					data: [60],
+				}]
+			});
+		}
+
+
+
+	});
+</script>
+<style>
+	#home{
+
+	}
+	.bg-white{
+		background-color: white;
+	}
+	.bg-green{
+		background-color:#66bb0d;
+	}
+	.bg-purple{
+		background-color: #862eb7;
+	}
+	.bg-skyblue{
+		background-color: #41bbea;
+	}
+	.outerDiv{
+		width: 95%;
+		margin:0 auto;
+	}
+	.totalDiv{
+		overflow:hidden;
+		padding: 10px;
+		border-radius: 5px;
+		margin-top:10px;
+	}
+	.totalDiv .iconDiv,.totalDiv .numDiv{
+		float:left; 
+	}
+	.iconDiv{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		text-align: center;
+	}
+	.iconDiv i{
+		line-height: 50px;
+		color:white;
+		font-size: 30px;
+	}
+	.totalDiv .numDiv{
+		margin-left: 20px;
+		padding-top:5px;
+	}
+	.numDiv span{
+		font-size: 24px;
+		line-height: 24px;
+		color: #3f3f3f;
+		font-weight: 900;
+	}
+	.numDiv small{
+		display: block;
+		color: #999
+	}
+	#visContainer{
+		height: 230px;
+		margin-top: 10px;
+	}
+	.visDiv,.uptimeDiv,.salesDiv{
+		position: relative;
+	}
+	.visDiv .numDiv,.uptimeDiv .numDiv,.salesDiv .numDiv{
+		position: absolute;
+		top:20px;
+		left: 20px;
+	}
+	.visDiv span,.salesDiv span{
+		color:#66bb0d;
+		font-weight: 900;
+		/*color:#862eb7;*/
+	}
+	.uptimeDiv,.salesDiv{
+		margin-top: 10px;
+	}
+	.uptimeDiv span{
+		font-size: 20px;
+		color: #862eb7;
+		font-weight: 900;
+	}
+	.salesDiv span{
+		font-size: 20px;
+	}
+	#uptimeContainer,#salesContainer{
+		height: 110px;
+	}
+	.conDiv{
+		margin: 20px 0;
+		padding:10px;
+		height: 420px;
+		/*background-color: yellow;*/
+	}
+	#conContainer{
+		/*height: 380px;*/
+		/*margin: 20px ;
+		padding: 20px;*/
+		height: 250px;
+	}
+	#conContainer1{
+		height: 150px;
+
+	}
+	#tbody-sparkline td:nth-child(1){
+	   color:#aaa7a8;
+	   padding:15px 180px 15px 30px; 
+	}
+	.speedDiv{
+		margin: 20px 0;
+		/*padding:10px;*/
+		height: 260px;
+	}
+	.speedDiv .numDiv-speed{
+		position: absolute;
+		top: 30px;
+		left: 30px;
+		padding: 20px;
+	}
+	#speedContainer{
+		height: 160px;
+		margin-left: 180px;
+		/*padding: 20px 0 0 0;*/
+	}
+	#speed1Container{
+		padding: 0;
+		margin: 0;
+		height: 100px;
+		width: 505px;
+		position: absolute;
+		/*top: 150px;*/
+		/*left: 20px;*/
+
+	}
+	.numDiv-speed span{
+		color: #862eb7;
+		font-size: 30px; 
+	}
+	.cpuDiv{
+		/*margin: 20px 0;*/
+		position: relative;
+		height: 140px;
+		padding: 10px;
+	}
+	#cpuContainer{
+		height: 120px;
+		margin-left: 200px;
+	}
+	.cpuDiv .numDiv-cpu{
+		/*margin: 10px;*/
+		/*padding: 20px;*/
+		position: absolute;
+		top: 20px;left: 20px;
+
+	}
+	.numDiv-cpu span{
+		color:#66bb0d;
+		font-size: 30px;
+	}
+</style>
+
+
+
+<!-- <div id="home">
+	home页面
+	<div class="switch">
+      <input type="checkbox"/>
+    </div>
+    <div id="homeContainer"></div>
+</div>
+<script>
+	$(function(){
+		$('#home input[type=checkbox]').bootstrapSwitch('state',false);
+		$("#home").on({
+			'switchChange.bootstrapSwitch':function (event,state) {
+		          alert(state);
+		          // 点击修改之后，向后台传递参数
+		      }
+		},'[type=checkbox]');
+		// 变量声明和函数声明都会提前，并且变量声明提前到最前边，然后是函数声明。
+		//函数声明提前 
+		/*var a;
+		function a(){}*/
+		/*console.log(a);
+		var a = 1;
+		function a(){}
+		console.log(a);*/
+		draw();
+		function draw(){
+			// 绘制
+			var chart = Highcharts.chart('homeContainer', {
+				chart:{
+					margin:[0,0,0,0],
+				},
+				credits:{
+					enabled:false,
+				},
+				colors:['red','#00ff00'],
+				title: {
+					text: ''
+				},
+				xAxis: {
+					visible:false,
+				},
+				yAxis: {
+					visible:false,
+					title: {
+						text: ''
+					}
+				},
+				legend: {
+					floating:true,
+					layout: 'vertical',
+					align: 'right',
+					verticalAlign: 'top'
+				},
+				plotOptions: {
+					series: {
+						label: {
+							connectorAllowed: false
+						},
+						pointStart: 2010
+					}
+				},
+				series: [{
+					name: '安装，实施人员',
+					data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+				}, {
+					name: '工人',
+					data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+				}]
+			});
+		}
+
+
+
+
+
+	});
+</script>
+<style>
+	#home{
+		color: red;
+	}
+	#homeContainer{
+		width: 400px;
+		height: 200px;
+	}
+</style> -->
